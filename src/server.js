@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 dotenv.config();
 import app from "./app.js";
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 const MONGODB_URI = "mongodb+srv://raunak:4IaADBlEHxfCmu4Y@cluster0.fln5dtu.mongodb.net/"
 const connectDB = async () => {
   try {

@@ -1,25 +1,14 @@
-// import express from "express";
-// import morgan from "morgan";
-// import calculatorRouter from "./routes/calculator.routes.js";
-// import errorHandler from "./middlewares/errorHandler.js";
-// import investmentRouter from "./routes/investment.routes.js";
-// const cors = require("cors");
-// const app = express();
-// app.use(express.json());
-// app.use(morgan("dev"));
-// app.get("/health", (_req, res) => res.json({ ok: true }));
-// app.use("/api/v1/calculator", calculatorRouter);
-// app.use("/api/v1/investments", investmentRouter);
-// app.use((req, res) => res.status(404).json({ error: "Not Found" }));
-// app.use(errorHandler);
-// export default app;
 import express from "express";
 import morgan from "morgan";
-import cors from "cors"; // ✅ add this
+import cors from "cors"; 
+import dotenv from "dotenv";
 import calculatorRouter from "./routes/calculator.routes.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import investmentRouter from "./routes/investment.routes.js";
-
+import userRouter from "./routes/user.routes.js";
+import emailRouter from './routes/email.routes.js';
+import paymentRouter from "./routes/payment.routes.js"
+dotenv.config(); 
 const app = express();
 
 // ✅ Enable CORS (allow all for now — tighten later if needed)
@@ -35,7 +24,9 @@ app.get("/health", (_req, res) => res.json({ ok: true }));
 
 app.use("/api/v1/calculator", calculatorRouter);
 app.use("/api/v1/investments", investmentRouter);
-
+app.use("/api/v1/email", emailRouter);
+app.use("/api/v1/user",userRouter)
+app.use("/api/v1/payment",paymentRouter)
 app.use((req, res) => res.status(404).json({ error: "Not Found" }));
 app.use(errorHandler);
 
